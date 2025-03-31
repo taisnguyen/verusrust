@@ -7,10 +7,10 @@ A verified port of a (currently very small) subset of the Rust standard library 
 <!-- GETTING STARTED -->
 ## Setup
 
-VerusRust uses `rustc` v1.76.0, which you can install with `rustup`:
+VerusRust uses `rustc` v1.78.0, which you can install with `rustup`:
 ```sh
-$ rustup install 1.76.0
-$ rustup override set 1.76.0
+$ rustup install 1.78.0
+$ rustup override set 1.78.0
 ```
 
 To begin, clone the repository:
