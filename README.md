@@ -24,7 +24,7 @@ To run verification, you must have `Verus` installed. Please see <a href="https:
 ### Usage
 To run verification, you can run from the root directory:
 ```sh
-$ verus --crate-type=lib src/lib.rs
+$ verus src/main.rs
 ```
    
 ## Trusted Computing Base
