@@ -15,7 +15,8 @@ verus! {
 /// Precondition should be consistent with the [documented safety conditions on `alloc`](https://doc.rust-lang.org/alloc/alloc/trait.Allocator.html#method.grow).
 #[verifier::external_body]
 pub fn grow(
-    ptr: NonNull<u8>,
+    ptr: PPtr<u8>,
+    // TODO: make struct for Layout and specification
     old_layout: Layout,
     new_layout: Layout,
     old_pt: Tracked<PointsToRaw>,
@@ -36,12 +37,12 @@ pub fn grow(
     // // deallocated, it cannot overlap `new_ptr`. Thus, the call to `copy_nonoverlapping` is
     // // safe. The safety contract for `dealloc` must be upheld by the caller.
     unsafe {
-        ptr::copy_nonoverlapping(ptr.as_ptr(), new_ptr, old_layout.size());
+        ptr::copy_nonoverlapping(ptr, new_ptr, old_layout.size());
     }
 
     let old_size = old_layout.size();
     let old_align = old_layout.align();
-    deallocate(ptr.as_ptr(), old_size, old_align, old_pt, old_dealloc);
+    deallocate(ptr, old_size, old_align, old_pt, old_dealloc);
 
     Ok((new_ptr, Tracked(new_pt), Tracked(new_dealloc)))
 }

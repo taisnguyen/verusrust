@@ -9,6 +9,8 @@ use vstd::prelude::*;
 // main file, although they are not directly used at all.
 mod alloc;
 // mod allocator;
+mod core;
+mod std_specs;
 
 verus! {
 
